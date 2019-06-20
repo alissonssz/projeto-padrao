@@ -4,13 +4,23 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { CoreModule } from './core/core.module';
+import { PublicModule } from './modules/public/public.module';
+import { PrivateModule } from './modules/private/private.module';
+import { SharedComponentsModule } from './shared/shared-components/shared-components.module';
+
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CoreModule,
+    PublicModule,
+    PrivateModule,
+    SharedComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,6 +8,8 @@ import { CoreModule } from './core/core.module';
 import { PublicModule } from './modules/public/public.module';
 import { PrivateModule } from './modules/private/private.module';
 import { SharedComponentsModule } from './shared/shared-components/shared-components.module';
+import { FormConvencionalModule } from './modules/private/modules/form-convencional/form-convencional.module';
+import { FormCustomizadoModule } from './modules/private/modules/form-customizado/form-customizado.module';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { SharedComponentsModule } from './shared/shared-components/shared-compon
     CoreModule,
     PublicModule,
     PrivateModule,
-    SharedComponentsModule
+    SharedComponentsModule,
+    FormConvencionalModule,
+    FormCustomizadoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

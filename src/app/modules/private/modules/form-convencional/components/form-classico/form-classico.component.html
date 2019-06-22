@@ -37,17 +37,9 @@
             <label for="">Sexo</label>
           </div>
           <div class="col-md-9">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" formControlName="sexo" type="radio" name="sexo" id="inlineRadio1" value="Masculino">
-              <label class="form-check-label" for="inlineRadio1">Masculino</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" formControlName="sexo" type="radio" name="sexo" id="inlineRadio2" value="Feminino">
-              <label class="form-check-label" for="inlineRadio2">Feminino</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" formControlName="sexo" type="radio" name="sexo" id="inlineRadio3" value="Outro" >
-              <label class="form-check-label" for="inlineRadio3">Outro</label>
+            <div *ngFor="let sexo of listaSexo; let i = index" class="form-check form-check-inline">
+              <input class="form-check-input" formControlName="sexo" type="radio" name="sexo" id="inlineRadio{{i}}" [value]="sexo?.id">
+              <label class="form-check-label" for="inlineRadio{{i}}">{{sexo?.nome}}</label>
             </div>
           </div>
         </div>
@@ -56,17 +48,9 @@
             <label for="">Interesses</label>
           </div>
           <div class="col-md-9">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio1" value="Cultura">
-              <label class="form-check-label" for="inlineRadio1">Cultura</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio2" value="Tecnologia">
-              <label class="form-check-label" for="inlineRadio2">Tecnologia</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio3" value="Automobilismo" >
-              <label class="form-check-label" for="inlineRadio3">Automobilismo</label>
+            <div *ngFor="let interesse of listaInteresses; let i = index" class="form-check form-check-inline">
+              <input class="form-check-input" formControlName="sexo" type="checkbox" name="sexo" id="inlineRadio{{i}}" [value]="interesse?.id">
+              <label class="form-check-label" for="inlineRadio{{i}}">{{interesse?.nome}}</label>
             </div>
           </div>
         </div>
@@ -75,11 +59,9 @@
             <label for="inputState">Estado Civil</label>
           </div>
           <div class="col-md-4">
-            <select formControlName="estadoCivil" id="inputState" sexo class="form-control">
+            <select formControlName="estadoCivil" id="inputState" name="estadoCivil" class="form-control">
               <option selected disabled>Selecione</option>
-              <option>Casado</option>
-              <option>Solterio</option>
-              <option>Divorciado</option>
+              <option *ngFor="let es of listaEstadoCivil; let i = index" [value]="es?.id">{{es?.nome}}</option>
             </select>
           </div>
         </div>

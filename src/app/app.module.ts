@@ -10,6 +10,7 @@ import { PrivateModule } from './modules/private/private.module';
 import { SharedComponentsModule } from './shared/shared-components/shared-components.module';
 import { FormConvencionalModule } from './modules/private/modules/form-convencional/form-convencional.module';
 import { FormCustomizadoModule } from './modules/private/modules/form-customizado/form-customizado.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FormCustomizadoModule } from './modules/private/modules/form-customizad
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     CoreModule,
     PublicModule,

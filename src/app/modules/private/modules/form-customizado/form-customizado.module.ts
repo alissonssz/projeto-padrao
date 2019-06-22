@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormCustomizadoRoutingModule } from './form-customizado-routing.module';
+import { FormAlteradoComponent } from './components/form-alterado/form-alterado.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [FormAlteradoComponent],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    FormCustomizadoRoutingModule
+  ],
+  exports: [FormAlteradoComponent]
 })
 export class FormCustomizadoModule { }

@@ -10,13 +10,13 @@ const routes: Routes = [
       nome: 'inicio'
     } 
   },
-  {
-    path: '**',
-    redirectTo: 'inicio',
-    data: {
-      nome: 'inicio'
-    } 
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: 'inicio',
+  //   data: {
+  //     nome: 'inicio'
+  //   } 
+  // }
 ];
 
 @NgModule({

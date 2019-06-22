@@ -11,6 +11,7 @@ import { SharedComponentsModule } from './shared/shared-components/shared-compon
 import { FormConvencionalModule } from './modules/private/modules/form-convencional/form-convencional.module';
 import { FormCustomizadoModule } from './modules/private/modules/form-customizado/form-customizado.module';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,14 +20,14 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule,
     AppRoutingModule,
     CoreModule,
     PublicModule,
     PrivateModule,
     SharedComponentsModule,
-    FormConvencionalModule,
-    FormCustomizadoModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

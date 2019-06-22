@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'pp-form-classico',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormClassicoComponent implements OnInit {
 
-  constructor() { }
+  formClassico: FormGroup;
+  constructor(
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
+    this.inicializarFormClassico();
+  }
+
+  inicializarFormClassico() {
+    this.formClassico = this.formBuilder.group({
+      nome: [null, []],
+      email: [null, []],
+      idade: [null, []],
+      cpf: [null, []],
+      sexo: [null, []],
+      interesses: [null, []],
+      estadoCivil: [null, []],
+    });
+  }
+
+  salvarForm() {
+    console.log('FormGroup', this.formClassico);
+    console.log('RawValue', this.formClassico.getRawValue());
+    
   }
 
 }

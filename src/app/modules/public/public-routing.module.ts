@@ -8,7 +8,13 @@ const routes: Routes = [
     component: InicioComponent,
     data: {
       nome: 'inicio'
-    } 
+    } ,
+    children: [
+      {
+        path: 'private',
+        loadChildren: '../private/private.module#PrivateModule'
+      }
+    ]
   }
 ];
 

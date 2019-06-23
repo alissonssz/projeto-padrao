@@ -36,7 +36,7 @@ export class FormClassicoComponent implements OnInit {
       idade: [null, []],
       cpf: [null, []],
       sexo: [null, []],
-      interesses: this.formBuilder.array([]),
+      interesses: [null],
       estadoCivil: [null, []],
     });
   }

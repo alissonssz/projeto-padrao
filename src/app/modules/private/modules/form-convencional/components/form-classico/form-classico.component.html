@@ -49,8 +49,8 @@
           </div>
           <div class="col-md-9">
             <div *ngFor="let interesse of listaInteresses; let i = index" class="form-check form-check-inline">
-              <input class="form-check-input" formControlName="sexo" type="checkbox" name="sexo" id="inlineRadio{{i}}" [value]="interesse?.id">
-              <label class="form-check-label" for="inlineRadio{{i}}">{{interesse?.nome}}</label>
+              <input class="form-check-input" formControlName="interesses" type="checkbox" name="interesses" id="inlineCheck{{i}}" [value]="interesse?.id">
+              <label class="form-check-label" for="inlineCheck{{i}}">{{interesse?.nome}}</label>
             </div>
           </div>
         </div>

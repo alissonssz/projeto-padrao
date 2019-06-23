@@ -48,9 +48,9 @@
             <label for="">Interesses</label>
           </div>
           <div class="col-md-9">
-            <div *ngFor="let interesse of listaInteresses; let i = index" class="form-check form-check-inline">
-              <input class="form-check-input" formControlName="interesses" type="checkbox" name="interesses" id="inlineCheck{{i}}" [value]="interesse?.id">
-              <label class="form-check-label" for="inlineCheck{{i}}">{{interesse?.nome}}</label>
+            <div *ngFor="let interesse of getFormArray('interesses').controls; let i = index" class="form-check form-check-inline" formArrayName="interesses">
+              <input [formControlName]="i" class="form-check-input"  type="checkbox" >
+              <label class="form-check-label" >{{listaInteresses[i].nome}}</label>
             </div>
           </div>
         </div>

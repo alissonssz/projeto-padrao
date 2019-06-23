@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { ItemGenerico } from 'src/app/shared/shared-models/item-generico';
 import { noConflict } from 'q';
 
@@ -36,9 +36,13 @@ export class FormClassicoComponent implements OnInit {
       idade: [null, []],
       cpf: [null, []],
       sexo: [null, []],
-      interesses: [null],
+      interesses: this.formBuilder.array([]),
       estadoCivil: [null, []],
     });
+  }
+
+  getFormArray(nome: string): FormArray {
+   return (<FormArray>this.formClassico.get(nome));
   }
 
   mockarlistaInteresses() {
@@ -55,7 +59,23 @@ export class FormClassicoComponent implements OnInit {
         id: 3,
         nome: 'Automobilismo'
       }
-    ]
+    ];
+    this.gerarFormArrayInteresses();
+  }
+
+  gerarFormArrayInteresses() {
+    return this.listaInteresses.map(
+      (interesse) => {
+        (<FormArray>this.formClassico.get('interesses')).push(this.gerarFormGroup())
+      } 
+    )
+  }
+
+  gerarFormGroup() {
+    return this.formBuilder.group({
+      id: null,
+      nome: null
+    })
   }
 
   mockarlistaSexo() {
@@ -95,6 +115,9 @@ export class FormClassicoComponent implements OnInit {
   salvarForm() {
     console.log('FormGroup', this.formClassico);
     console.log('RawValue', this.formClassico.getRawValue());
+    this.formClassico.controls['interesses'].value.forEach(element => console.log('element selecionado', element));
+
+    
     
   }
 

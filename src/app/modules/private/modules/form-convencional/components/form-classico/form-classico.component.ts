@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { ItemGenerico } from 'src/app/shared/shared-models/item-generico';
-import { noConflict } from 'q';
+import { PessoaService } from '../../services/pessoa-service';
 
 @Component({
   selector: 'pp-form-classico',
@@ -15,6 +15,7 @@ export class FormClassicoComponent implements OnInit {
   listaSexo: Array<ItemGenerico>;
   listaEstadoCivil: Array<ItemGenerico>;
   constructor(
+    private pessoaService: PessoaService,
     private formBuilder: FormBuilder
   ) { 
     this.listaInteresses = new Array<ItemGenerico>();
@@ -24,9 +25,13 @@ export class FormClassicoComponent implements OnInit {
 
   ngOnInit() {
     this.inicializarFormClassico();
-    this.mockarlistaInteresses()
-    this.mockarlistaSexo();
-    this.mockarListaEstadoCivil();
+    //this.mockarlistaInteresses()
+    //this.mockarListaEstadoCivil();
+    //this.mockarlistaSexo();
+    this.consultarListaInteresses()
+    this.consultarListaEstadoCivil();
+    this.consultarlistaSexo();
+    
   }
 
   inicializarFormClassico() {
@@ -45,23 +50,100 @@ export class FormClassicoComponent implements OnInit {
    return (<FormArray>this.formClassico.get(nome));
   }
 
-  mockarlistaInteresses() {
-    this.listaInteresses = [
-      {
-        id: 1,
-        nome: 'Cultura'
-      },
-      {
-        id: 2,
-        nome: 'Tecnologia'
-      },
-      {
-        id: 3,
-        nome: 'Automobilismo'
-      }
-    ];
-    this.gerarFormArrayInteresses();
+  consultarListaInteresses() {
+    this.pessoaService.getInteresses().
+      subscribe(
+        (res) => {
+          this.listaInteresses = res;
+        },
+        (err) => {
+          console.log('erro interesses', err); 
+        },
+        () => {
+          this.gerarFormArrayInteresses();
+        },
+      );
   }
+
+  consultarlistaSexo() {
+    this.pessoaService.getSexo().
+    subscribe(
+      (res) => {
+        this.listaSexo = res;
+      },
+      (err) => {
+        console.log('erro sexo', err); 
+      },
+      () => {
+      },
+    );
+  }
+
+  consultarListaEstadoCivil() {
+    this.pessoaService.getEstadoCivil().
+    subscribe(
+      (res) => {
+        this.listaEstadoCivil = res;
+      },
+      (err) => {
+        console.log('erro estado civil', err); 
+      },
+      () => {
+
+      },
+    );
+  }
+
+  // mockarlistaInteresses() {
+  //   this.listaInteresses = [
+  //     {
+  //       id: 1,
+  //       nome: 'Cultura'
+  //     },
+  //     {
+  //       id: 2,
+  //       nome: 'Tecnologia'
+  //     },
+  //     {
+  //       id: 3,
+  //       nome: 'Automobilismo'
+  //     }
+  //   ];
+  // }
+
+  // mockarlistaSexo() {
+  //   this.listaSexo = [
+  //     {
+  //       id: 1,
+  //       nome: 'Masculino'
+  //     },
+  //     {
+  //       id: 2,
+  //       nome: 'Feminino'
+  //     },
+  //     {
+  //       id: 3,
+  //       nome: 'Outro'
+  //     }
+  //   ]
+  // }
+
+  // mockarListaEstadoCivil() {
+  //   this.listaEstadoCivil = [
+  //     {
+  //       id: 1,
+  //       nome: 'Solteiro'
+  //     },
+  //     {
+  //       id: 2,
+  //       nome: 'Casado'
+  //     },
+  //     {
+  //       id: 3,
+  //       nome: 'Divorciado'
+  //     }
+  //   ]
+  // }
 
   gerarFormArrayInteresses() {
     return this.listaInteresses.map(
@@ -78,39 +160,7 @@ export class FormClassicoComponent implements OnInit {
     })
   }
 
-  mockarlistaSexo() {
-    this.listaSexo = [
-      {
-        id: 1,
-        nome: 'Masculino'
-      },
-      {
-        id: 2,
-        nome: 'Feminino'
-      },
-      {
-        id: 3,
-        nome: 'Outro'
-      }
-    ]
-  }
-
-  mockarListaEstadoCivil() {
-    this.listaEstadoCivil = [
-      {
-        id: 1,
-        nome: 'Solteiro'
-      },
-      {
-        id: 2,
-        nome: 'Casado'
-      },
-      {
-        id: 3,
-        nome: 'Divorciado'
-      }
-    ]
-  }
+  
 
   salvarForm() {
     console.log('FormGroup', this.formClassico);

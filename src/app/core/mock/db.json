@@ -5,8 +5,8 @@
     ],
     "sexo": [
         {"id":1, "nome":"Masculino"},
-        {"id":2, "nome":"Masculino"},
-        {"id":3, "nome":"Masculino"}
+        {"id":2, "nome":"Feminino"},
+        {"id":3, "nome":"Outro"}
     ],
     "interesses": [
         {"id":1, "nome":"Cultura"},

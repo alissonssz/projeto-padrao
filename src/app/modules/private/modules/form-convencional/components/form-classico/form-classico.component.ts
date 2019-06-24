@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { ItemGenerico } from 'src/app/shared/shared-models/item-generico';
 import { PessoaService } from '../../services/pessoa-service';
+import { Pessoa } from '../../models/pessoa.model';
 
 @Component({
   selector: 'pp-form-classico',
@@ -28,9 +29,9 @@ export class FormClassicoComponent implements OnInit {
     //this.mockarlistaInteresses()
     //this.mockarListaEstadoCivil();
     //this.mockarlistaSexo();
-    this.consultarListaInteresses()
     this.consultarListaEstadoCivil();
     this.consultarlistaSexo();
+    this.consultarListaInteresses()
     
   }
 
@@ -44,10 +45,6 @@ export class FormClassicoComponent implements OnInit {
       interesses: this.formBuilder.array([]),
       estadoCivil: [null, []],
     });
-  }
-
-  getFormArray(nome: string): FormArray {
-   return (<FormArray>this.formClassico.get(nome));
   }
 
   consultarListaInteresses() {
@@ -64,6 +61,29 @@ export class FormClassicoComponent implements OnInit {
         },
       );
   }
+
+  gerarFormArrayInteresses() {
+    return this.listaInteresses.map(
+      (interesse) => {
+        (this.formClassico.get('interesses') as FormArray).push(this.formBuilder.control(false))
+      }
+    )
+  }
+
+  // gerarFormArrayInteresses() {
+  //   return this.listaInteresses.map(
+  //     (interesse) => {
+  //       (<FormArray>this.formClassico.get('interesses')).push(this.gerarFormGroup())
+  //     } 
+  //   )
+  // }
+
+  // gerarFormGroup() {
+  //   return this.formBuilder.group({
+  //     id: null,
+  //     nome: null
+  //   })
+  // }
 
   consultarlistaSexo() {
     this.pessoaService.getSexo().
@@ -94,81 +114,25 @@ export class FormClassicoComponent implements OnInit {
     );
   }
 
-  // mockarlistaInteresses() {
-  //   this.listaInteresses = [
-  //     {
-  //       id: 1,
-  //       nome: 'Cultura'
-  //     },
-  //     {
-  //       id: 2,
-  //       nome: 'Tecnologia'
-  //     },
-  //     {
-  //       id: 3,
-  //       nome: 'Automobilismo'
-  //     }
-  //   ];
-  // }
-
-  // mockarlistaSexo() {
-  //   this.listaSexo = [
-  //     {
-  //       id: 1,
-  //       nome: 'Masculino'
-  //     },
-  //     {
-  //       id: 2,
-  //       nome: 'Feminino'
-  //     },
-  //     {
-  //       id: 3,
-  //       nome: 'Outro'
-  //     }
-  //   ]
-  // }
-
-  // mockarListaEstadoCivil() {
-  //   this.listaEstadoCivil = [
-  //     {
-  //       id: 1,
-  //       nome: 'Solteiro'
-  //     },
-  //     {
-  //       id: 2,
-  //       nome: 'Casado'
-  //     },
-  //     {
-  //       id: 3,
-  //       nome: 'Divorciado'
-  //     }
-  //   ]
-  // }
-
-  gerarFormArrayInteresses() {
-    return this.listaInteresses.map(
-      (interesse) => {
-        (<FormArray>this.formClassico.get('interesses')).push(this.gerarFormGroup())
-      } 
-    )
+  getFormArray(nome: string): FormArray {
+    return (<FormArray>this.formClassico.get(nome));
   }
-
-  gerarFormGroup() {
-    return this.formBuilder.group({
-      id: null,
-      nome: null
-    })
-  }
-
-  
 
   salvarForm() {
     console.log('FormGroup', this.formClassico);
     console.log('RawValue', this.formClassico.getRawValue());
-    this.formClassico.controls['interesses'].value.forEach(element => console.log('element selecionado', element));
+    let pessoaEnvio: Pessoa = this.formClassico.getRawValue();
+    console.log('pessoa envio', pessoaEnvio);
+    this.tratarCheckbox();
+    // this.formClassico.controls['interesses'].value.forEach(element => console.log('element selecionado', element));
 
-    
-    
+  }
+
+  tratarCheckbox() {
+    let selectedOrderIds = (this.formClassico.get('interesses') as FormArray).value
+      .map((v, i) => v ? this.listaInteresses[i].id : null)
+      .filter(v => v !== null);
+    console.log('selectedOrderIds', selectedOrderIds)
   }
 
 }

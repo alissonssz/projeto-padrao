@@ -1,3 +1,48 @@
-<p>
-  form-alterado works!
-</p>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="formCustomizado">
+        <div class="row mb-2">
+          <div class="col-md-3 d-flex justify-content-end">
+            <label for="">Nome</label>
+          </div>
+          <div class="col-md-9">
+            <input formControlName="nome" type="text" class="form-control" name="nome" id="">
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-md-3 d-flex justify-content-end">
+            <label for="">Solteiro</label>
+          </div>
+          <div class="col-md-9">
+            <pp-radio-input-control formControlName="radio" [lista]="listaRadio" name="radio"></pp-radio-input-control>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-md-3 d-flex justify-content-end">
+            <label for="">Sim ou Não</label>
+          </div>
+          <div class="col-md-9">
+              <div class="form-check form-check-inline" >
+                <input class="form-check-input" formControlName="sn"  type="radio" id="inlineRadio1" name="sn" value="S" >
+                <label class="form-check-label" for="inlineRadio1">Sim</label>
+              </div>
+              <div class="form-check form-check-inline" >
+                <input class="form-check-input" formControlName="sn" type="radio" id="inlineRadio1" name="sn" value="N" >
+                <label class="form-check-label" for="inlineRadio1">Não</label>
+              </div>
+          </div>
+        </div>
+        
+        
+        <div class="row mb-2">
+          <div class="col-md-12 d-flex justify-content-end">
+              <button class="btn btn-default" (click)="reset()">resetar</button>
+              <button class="btn btn-default" (click)="alterarRadio()">Alterar</button>
+            <button class="btn btn-primary" (click)="submeterForm()">Submeter</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> 

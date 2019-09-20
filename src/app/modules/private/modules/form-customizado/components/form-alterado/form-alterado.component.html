@@ -15,7 +15,24 @@
             <label for="">Solteiro</label>
           </div>
           <div class="col-md-9">
-            <pp-radio-input-control formControlName="radio" [lista]="listaRadio" name="radio"></pp-radio-input-control>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Primeiro</th>
+                  <th scope="col">Segundo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let interesse of getFormArray('radio').controls; let i = index" formArrayName="radio">
+                  <td>
+                    Nome Arquivo {{i}}
+                  </td>
+                  <td >
+                    <pp-radio-input-control [index]="i" [formControlName]="i" [lista]="listaRadio" name="radio"></pp-radio-input-control>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <div class="row mb-2">

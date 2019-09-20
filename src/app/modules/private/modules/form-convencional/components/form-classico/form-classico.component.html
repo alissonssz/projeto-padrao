@@ -1,76 +1,77 @@
 <div class="container">
-  <div class="card">
-    <div class="card-body">
-      <form [formGroup]="formClassico">
-        <div class="row mb-2">
-          <div class="col-md-3 d-flex justify-content-end">
-            <label for="">Nome</label>
-          </div>
-          <div class="col-md-9">
-            <input formControlName="nome" type="text" class="form-control" name="nome" id="">
+  <pp-container-padrao [titulo]="'Arthur'">
+    <form [formGroup]="formClassico">
+      <div class="row mb-2">
+        <div class="col-md-3 d-flex justify-content-end">
+          <label for="">Nome</label>
+        </div>
+        <div class="col-md-9">
+          <input formControlName="nome" type="text" class="form-control" name="nome" id="">
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-3 d-flex justify-content-end">
+          <label for="">Email</label>
+        </div>
+        <div class="col-md-6">
+          <input formControlName="email" type="text" class="form-control" name="email" id="">
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-3 d-flex justify-content-end">
+          <label for="">Idade</label>
+        </div>
+        <div class="col-md-2">
+          <input formControlName="idade" type="text" class="form-control" name="idade" id="">
+        </div>
+        <div class="col-md-3 d-flex justify-content-end">
+          <label for="">CPF</label>
+        </div>
+        <div class="col-md-4">
+          <input formControlName="cpf" type="text" class="form-control" name="cpf" id="">
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-3 d-flex justify-content-end">
+          <label for="">Sexo</label>
+        </div>
+        <div class="col-md-9">
+          <div *ngFor="let sexo of listaSexo; let i = index" class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="sexo" type="radio" name="sexo" id="inlineRadio{{i}}" [value]="sexo?.id">
+            <label class="form-check-label" for="inlineRadio{{i}}">{{sexo?.nome}}</label>
           </div>
         </div>
-        <div class="row mb-2">
-          <div class="col-md-3 d-flex justify-content-end">
-            <label for="">Email</label>
-          </div>
-          <div class="col-md-6">
-            <input formControlName="email" type="text" class="form-control" name="email" id="">
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-3 d-flex justify-content-end">
+          <label for="">Interesses</label>
+        </div>
+        <div class="col-md-9">
+          <div *ngFor="let interesse of getFormArray('interesses').controls; let i = index" class="form-check form-check-inline" formArrayName="interesses">
+            <input [formControlName]="i" class="form-check-input"  type="checkbox" >
+            <label class="form-check-label" >{{listaInteresses[i]?.nome}}</label>
           </div>
         </div>
-        <div class="row mb-2">
-          <div class="col-md-3 d-flex justify-content-end">
-            <label for="">Idade</label>
-          </div>
-          <div class="col-md-2">
-            <input formControlName="idade" type="text" class="form-control" name="idade" id="">
-          </div>
-          <div class="col-md-3 d-flex justify-content-end">
-            <label for="">CPF</label>
-          </div>
-          <div class="col-md-4">
-            <input formControlName="cpf" type="text" class="form-control" name="cpf" id="">
-          </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-3 d-flex justify-content-end">
+          <label for="inputState">Estado Civil</label>
         </div>
-        <div class="row mb-2">
-          <div class="col-md-3 d-flex justify-content-end">
-            <label for="">Sexo</label>
-          </div>
-          <div class="col-md-9">
-            <div *ngFor="let sexo of listaSexo; let i = index" class="form-check form-check-inline">
-              <input class="form-check-input" formControlName="sexo" type="radio" name="sexo" id="inlineRadio{{i}}" [value]="sexo?.id">
-              <label class="form-check-label" for="inlineRadio{{i}}">{{sexo?.nome}}</label>
-            </div>
-          </div>
+        <div class="col-md-4">
+          <select formControlName="estadoCivil" id="inputState" name="estadoCivil" class="form-control">
+            <option selected disabled>Selecione</option>
+            <option *ngFor="let es of listaEstadoCivil; let i = index" [value]="es?.id">{{es?.nome}}</option>
+          </select>
         </div>
-        <div class="row mb-2">
-          <div class="col-md-3 d-flex justify-content-end">
-            <label for="">Interesses</label>
-          </div>
-          <div class="col-md-9">
-            <div *ngFor="let interesse of getFormArray('interesses').controls; let i = index" class="form-check form-check-inline" formArrayName="interesses">
-              <input [formControlName]="i" class="form-check-input"  type="checkbox" >
-              <label class="form-check-label" >{{listaInteresses[i]?.nome}}</label>
-            </div>
-          </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-12 d-flex justify-content-end">
+          <button type="button" class="btn btn-primary" (click)="salvarForm()">Salvar</button>
         </div>
-        <div class="row mb-2">
-          <div class="col-md-3 d-flex justify-content-end">
-            <label for="inputState">Estado Civil</label>
-          </div>
-          <div class="col-md-4">
-            <select formControlName="estadoCivil" id="inputState" name="estadoCivil" class="form-control">
-              <option selected disabled>Selecione</option>
-              <option *ngFor="let es of listaEstadoCivil; let i = index" [value]="es?.id">{{es?.nome}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="row mb-2">
-          <div class="col-md-12 d-flex justify-content-end">
-            <button type="button" class="btn btn-primary" (click)="salvarForm()">Salvar</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
+      </div>
+    </form>
+  </pp-container-padrao>
 </div>
+
+<pp-card-iniciais-usuarios [usuarios]="usuarios" [coresPossiveis]="coresPossiveis"></pp-card-iniciais-usuarios>
+

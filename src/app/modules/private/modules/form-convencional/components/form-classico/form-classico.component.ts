@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { ItemGenerico } from 'src/app/shared/shared-models/item-generico';
 import { PessoaService } from '../../services/pessoa-service';
 import { Pessoa } from '../../models/pessoa.model';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Usuario } from 'src/app/shared/models/usuario.model';
 
 @Component({
   selector: 'pp-form-classico',
@@ -15,6 +17,11 @@ export class FormClassicoComponent implements OnInit {
   listaInteresses: Array<ItemGenerico>;
   listaSexo: Array<ItemGenerico>;
   listaEstadoCivil: Array<ItemGenerico>;
+  usuarios : Array<Usuario>; 
+  coresPossiveis = [
+    'darksalmon', 'hotpink', 'lightskyblue', 'goldenrod', 'peachpuff',
+    'mediumspringgreen', 'cornflowerblue', 'blanchedalmond', 'lightslategrey'
+  ];
   constructor(
     private pessoaService: PessoaService,
     private formBuilder: FormBuilder
@@ -29,10 +36,35 @@ export class FormClassicoComponent implements OnInit {
     //this.mockarlistaInteresses()
     //this.mockarListaEstadoCivil();
     //this.mockarlistaSexo();
-    this.consultarListaEstadoCivil();
-    this.consultarlistaSexo();
-    this.consultarListaInteresses()
-    
+    // this.consultarListaEstadoCivil();
+    // this.consultarlistaSexo();
+    // this.consultarListaInteresses()
+    this.inicializarMockUsuario();
+  }
+
+  inicializarMockUsuario() {
+    this.usuarios = [
+      {
+        id: 1,
+        nome: 'Alisson Santos de Souza'
+      },
+      {
+        id: 2,
+        nome: 'Paulisson Santos de Souza'
+      },
+      {
+        id: 3,
+        nome: 'Ricardisson Santos de Souza'
+      },
+      {
+        id: 4,
+        nome: 'Ricardisson Santos de Souza'
+      },
+      {
+        id: 5,
+        nome: 'Jessika Azeda'
+      }
+    ]
   }
 
   inicializarFormClassico() {

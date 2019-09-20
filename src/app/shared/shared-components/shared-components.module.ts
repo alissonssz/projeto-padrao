@@ -4,17 +4,28 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { RadioInputControlComponent } from './radio-input-control/radio-input-control.component';
+import { ContainerPadraoComponent } from './container-padrao/container-padrao.component';
+import { CardIniciaisUsuariosComponent } from './card-iniciais-usuarios/card-iniciais-usuarios.component';
+import { SharedDirectivesModule } from '../shared-directives/shared-directives.module';
 
 @NgModule({
   declarations: [
     HeaderComponent, 
     FooterComponent, 
-    RadioInputControlComponent
+    RadioInputControlComponent, 
+    ContainerPadraoComponent,
+    CardIniciaisUsuariosComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedDirectivesModule
   ],
-  exports: [HeaderComponent, FooterComponent, RadioInputControlComponent]
+  exports: [
+    HeaderComponent, 
+    FooterComponent, 
+    RadioInputControlComponent, 
+    ContainerPadraoComponent, 
+    CardIniciaisUsuariosComponent]
 })
 export class SharedComponentsModule { }

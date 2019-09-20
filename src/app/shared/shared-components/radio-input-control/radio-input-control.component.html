@@ -1,4 +1,4 @@
 <div class="form-check form-check-inline" *ngFor="let item of lista; let i = index">
-  <input class="form-check-input" #radioRef type="radio" id="inlineRadio{{i}}" name="inlineRadio" [value]="item.valor" [checked]="value === item.valor" (change)="selecionarOpcao(item.valor)">
+  <input class="form-check-input" #radioRef type="radio" id="inlineRadio{{i}}" name="inlineRadio{{index}}" [value]="item.valor" [checked]="value === item.valor" (change)="selecionarOpcao(item.valor)">
   <label class="form-check-label" for="inlineRadio{{i}}">{{item.nome}}</label>
 </div>

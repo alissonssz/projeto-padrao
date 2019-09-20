@@ -1,0 +1,16 @@
+<div class="row mt-3">
+  <div class="col-md-6 mb-3" *ngFor="let usuario of usuarios; let i = index">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <span iniciaisDiretiva [nome]="usuario?.nome" [coresPossiveis]="coresPossiveis" [corTexto]="'white'" class="circulo"></span>
+          </div>
+          <div class="col-md-9">
+            <p>{{usuario?.nome}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

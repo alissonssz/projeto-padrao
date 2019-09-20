@@ -21,6 +21,8 @@ export class RadioInputControlComponent implements ControlValueAccessor {
   onTouch;
   disabled;
   value;
+  @Input()
+  index: number;
   constructor(
     private renderer: Renderer2,
     private _cdr: ChangeDetectorRef

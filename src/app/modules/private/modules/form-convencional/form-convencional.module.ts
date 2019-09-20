@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { PessoaService } from './services/pessoa-service';
+
 @NgModule({
   declarations: [FormClassicoComponent],
   imports: [
@@ -17,6 +18,7 @@ import { PessoaService } from './services/pessoa-service';
   ],
   exports: [
     FormClassicoComponent
+    
   ],
   providers: [
     PessoaService

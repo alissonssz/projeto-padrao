@@ -10,6 +10,7 @@ export class CardIniciaisUsuariosComponent implements OnInit {
 
   @Input() usuarios: Array<Usuario>;
   @Input() coresPossiveis: Array<string>;
+  @Input() corTexto: Array<string>;
   constructor() { }
 
   ngOnInit() {

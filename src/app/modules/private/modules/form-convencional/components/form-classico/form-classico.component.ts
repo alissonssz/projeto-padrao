@@ -5,6 +5,9 @@ import { PessoaService } from '../../services/pessoa-service';
 import { Pessoa } from '../../models/pessoa.model';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Usuario } from 'src/app/shared/models/usuario.model';
+import { UniaoTipos } from '../../models/tipo-uniao.model';
+import { ModalService } from 'src/app/core/services/modal.service';
+import { ModalExemploComponent } from 'src/app/shared/shared-components/modal-exemplo/modal-exemplo.component';
 
 @Component({
   selector: 'pp-form-classico',
@@ -18,13 +21,15 @@ export class FormClassicoComponent implements OnInit {
   listaSexo: Array<ItemGenerico>;
   listaEstadoCivil: Array<ItemGenerico>;
   usuarios : Array<Usuario>; 
+  uniao: UniaoTipos;
   coresPossiveis = [
     'darksalmon', 'hotpink', 'lightskyblue', 'goldenrod', 'peachpuff',
     'mediumspringgreen', 'cornflowerblue', 'blanchedalmond', 'lightslategrey'
   ];
   constructor(
     private pessoaService: PessoaService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalService: ModalService
   ) { 
     this.listaInteresses = new Array<ItemGenerico>();
     this.listaSexo = new Array<ItemGenerico>();
@@ -40,6 +45,12 @@ export class FormClassicoComponent implements OnInit {
     // this.consultarlistaSexo();
     // this.consultarListaInteresses()
     this.inicializarMockUsuario();
+    this.testaTipo();
+  }
+
+  testaTipo() {
+    console.log('uniao', this.uniao);
+    
   }
 
   inicializarMockUsuario() {
@@ -165,6 +176,13 @@ export class FormClassicoComponent implements OnInit {
       .map((v, i) => v ? this.listaInteresses[i].id : null)
       .filter(v => v !== null);
     console.log('selectedOrderIds', selectedOrderIds)
+  }
+
+  abrirModal() {
+    let instancia = this.modalService.abrirModal(ModalExemploComponent, {initialState: {titulo: 'Meu título'}});
+    instancia.$salvar.subscribe(abrir => console.log('Emissão ao salvar', abrir));
+    instancia.$fechar.subscribe(fechar => console.log('Emissão ao fechar', fechar));
+
   }
 
 }

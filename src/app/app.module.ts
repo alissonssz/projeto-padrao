@@ -12,6 +12,8 @@ import { FormConvencionalModule } from './modules/private/modules/form-convencio
 import { FormCustomizadoModule } from './modules/private/modules/form-customizado/form-customizado.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import { FormsModule } from '@angular/forms';
     PublicModule,
     PrivateModule,
     SharedComponentsModule,
+    BrowserAnimationsModule,
+    ModalModule.forRoot()
     
   ],
   providers: [],

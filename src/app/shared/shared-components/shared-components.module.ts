@@ -7,6 +7,7 @@ import { RadioInputControlComponent } from './radio-input-control/radio-input-co
 import { ContainerPadraoComponent } from './container-padrao/container-padrao.component';
 import { CardIniciaisUsuariosComponent } from './card-iniciais-usuarios/card-iniciais-usuarios.component';
 import { SharedDirectivesModule } from '../shared-directives/shared-directives.module';
+import { ModalExemploComponent } from './modal-exemplo/modal-exemplo.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,11 @@ import { SharedDirectivesModule } from '../shared-directives/shared-directives.m
     FooterComponent, 
     RadioInputControlComponent, 
     ContainerPadraoComponent,
-    CardIniciaisUsuariosComponent
+    CardIniciaisUsuariosComponent,
+    ModalExemploComponent
+  ],
+  entryComponents: [
+    ModalExemploComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +31,6 @@ import { SharedDirectivesModule } from '../shared-directives/shared-directives.m
     FooterComponent, 
     RadioInputControlComponent, 
     ContainerPadraoComponent, 
-    CardIniciaisUsuariosComponent]
+    CardIniciaisUsuariosComponent, ModalExemploComponent]
 })
 export class SharedComponentsModule { }

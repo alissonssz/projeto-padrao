@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, FormArray, Validators } from '@angular/forms';
 import { ItemGenerico } from 'src/app/shared/shared-models/item-generico';
 import { PessoaService } from '../../services/pessoa-service';
 import { Pessoa } from '../../models/pessoa.model';
@@ -80,8 +80,8 @@ export class FormClassicoComponent implements OnInit {
 
   inicializarFormClassico() {
     this.formClassico = this.formBuilder.group({
-      nome: [null, []],
-      email: [null, []],
+      nome: [null, [Validators.maxLength(2)]],
+      email: [null, [Validators.required]],
       idade: [null, []],
       cpf: [null, []],
       sexo: [null, []],
@@ -162,13 +162,25 @@ export class FormClassicoComponent implements OnInit {
   }
 
   salvarForm() {
-    console.log('FormGroup', this.formClassico);
-    console.log('RawValue', this.formClassico.getRawValue());
+
     let pessoaEnvio: Pessoa = this.formClassico.getRawValue();
-    console.log('pessoa envio', pessoaEnvio);
     this.tratarCheckbox();
+    this.validacao(this.formClassico);
     // this.formClassico.controls['interesses'].value.forEach(element => console.log('element selecionado', element));
 
+  }
+
+
+  validacao(form: FormGroup) {
+
+    if (form && form.invalid) {
+      console.log('form', form);
+      for (const control in form.controls) {
+        const element = document.querySelector(`[formControlName="${control}"]`)
+        console.log('control', element);
+        
+      }
+    }
   }
 
   tratarCheckbox() {

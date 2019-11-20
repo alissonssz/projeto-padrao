@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { PessoaService } from './services/pessoa-service';
+import { SharedDirectivesModule } from 'src/app/shared/shared-directives/shared-directives.module';
 
 @NgModule({
   declarations: [FormClassicoComponent],
@@ -14,7 +15,8 @@ import { PessoaService } from './services/pessoa-service';
     FormConvencionalRoutingModule,
     SharedComponentsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedDirectivesModule
   ],
   exports: [
     FormClassicoComponent
